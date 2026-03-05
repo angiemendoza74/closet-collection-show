@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { motion } from "framer-motion";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   const { itemCount } = useCart();
@@ -15,7 +16,9 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-8 font-body text-sm tracking-widest uppercase text-muted-foreground">
           <Link to="/" className="hover:text-foreground transition-colors">Colección</Link>
         </nav>
-        <Link to="/checkout" className="relative p-2 hover:text-muted-foreground transition-colors">
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link to="/checkout" className="relative p-2 hover:text-muted-foreground transition-colors">
           <ShoppingBag size={20} />
           {itemCount > 0 && (
             <motion.span
@@ -26,7 +29,8 @@ const Header = () => {
               {itemCount}
             </motion.span>
           )}
-        </Link>
+          </Link>
+        </div>
       </div>
     </header>
   );
